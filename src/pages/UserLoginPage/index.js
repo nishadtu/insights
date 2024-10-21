@@ -5,7 +5,6 @@ import UserLoginForm from "components/forms/UserLoginForm";
 import { useLocation, useNavigate } from 'react-router-dom';
 import routeNames from "routes/routeNames";
 
-
 const UserLoginPage = () => {
 
 	const [modalData, setModalData] = useState({ error: false, text: "", header: "", modalWait: "", callback: undefined });
@@ -32,7 +31,7 @@ const UserLoginPage = () => {
 	}, [locationUrl.state, navigate]);
 
 	useEffect(() => {
-		(events == "nearest" ? setEventName("NEAREST THE PIN") : setEventName("LONGEST DRIVE"))
+		(events === "nearest" ? setEventName("NEAREST THE PIN") : setEventName("LONGEST DRIVE"))
 	}, [events]);
 
 	return (
@@ -40,7 +39,6 @@ const UserLoginPage = () => {
 			<Header text="Login" title="Login | Insights Admin Dashboard" eventName={eventName}/>
 			<UserLoginForm handleModalMessage={handleModalMessage} />
 			<MessageModal isOpen={modalIsOpen} handleClose={handleCloseModal} data={modalData} />
-
 		</div>
 
 	);

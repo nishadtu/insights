@@ -24,6 +24,9 @@ import RegisterPage from "pages/RegisterPage";
 import UserLoginPage from "pages/UserLoginPage";
 import NearestScore from "pages/NearestScorePage";
 import LongestScore from "pages/LongestScorePage";
+import NearestCard from "pages/CardPage";
+import InitializeGoogleAnalytics from "analytics";
+import GoogleAnalyticsApp from "pages/GoogleLogin";
 
 function App() {
 	const { anonLogin } = useAnonAuth();
@@ -39,6 +42,7 @@ function App() {
 
 	useEffect(() => {
 		anonLogin();
+		InitializeGoogleAnalytics();
 	}, []);
 
 
@@ -69,6 +73,8 @@ function App() {
 									<Route path={routes.userLogin} element={<UserLoginPage />} />
 									<Route path={routes.nearestScore} element={<NearestScore />} />
 									<Route path={routes.longestScore} element={<LongestScore />} />
+									<Route path={routes.nearestCard} element={<NearestCard />} />
+									<Route path={routes.google} element={<GoogleAnalyticsApp />} />
 								</Routes>
 							</Box>
 						</Router>

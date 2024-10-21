@@ -33,6 +33,7 @@ const LongestForm = ({ handleModalMessage }) => {
 			UserDataService.updateUser(email, { longest });
 			handleModalMessage("Longest Drive score has been submitted.", false,);
 			setLongest("");
+			UserDataService.sendEmailLongest(email);
 			setTimeout(() => { navigate(routeNames.longest, { state: {} }); }, 5000);
 			return;
 		} 

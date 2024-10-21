@@ -120,7 +120,7 @@ const scoreTitle = (theme) => ({
   const totalScoreNumber = (theme) => ({
 	color: '#000000',
 	fontFamily: 'Poppins-SemiBold',
-	fontSize: '4.5rem',
+	fontSize: '3.5rem',
 	lineHeight: '4.5rem',
 	textAlign: 'center',
 	width: '100%',

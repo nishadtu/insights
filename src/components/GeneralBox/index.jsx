@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Button, CardContent, CardActions, Card, Box, Divider, Grid} from "@mui/material";
+import { Typography, Card, Box, Divider, Grid} from "@mui/material";
 import styles from "./style";
 
 const GeneralBox = ({ icon, subIcon, generalText, generalNumber, generalFooter }) => {

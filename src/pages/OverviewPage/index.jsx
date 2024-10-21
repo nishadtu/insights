@@ -1,10 +1,10 @@
-import { Box, styled, Typography, Grid } from '@mui/material';
+import { Box, Typography, Grid } from '@mui/material';
 import React, { useEffect, useState } from "react";
 import styles from './style';
 import OverViewBox from 'components/boxes/OverViewBox';
 import OverViewChartBox from 'components/boxes/OverViewChartBox';
 import { db } from "firebase-config";
-import { collection, deleteDoc, doc, orderBy, query, getCountFromServer, where, inputCode } from "firebase/firestore";
+import { collection, deleteDoc, doc, orderBy, query, getCountFromServer, where } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { AdminTable } from "components/tables/AdminTable";
 import { DB_NAME, UNSUBSCRIBE_DB_NAME } from "constants";
@@ -35,6 +35,8 @@ const OverView = () => {
   const [nearestCount, setNearestCount] = useState(0);
   const [longestCount, setLongestCount] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
+  const [nearestEmailCount, setNearestEmailCount] = useState(0);
+  const [longestEmailCount, setLongestEmailCount] = useState(0);
   
 
   const [users, loadingUsers, errorUsers] = useCollection(collection(db, DB_NAME));
@@ -58,17 +60,19 @@ const OverView = () => {
     const getTotalCount = query(userCollectionRef, orderBy("register_date", "desc"));
     const getTotalCountSub = (await getCountFromServer(getTotalCount)).data().count;
     setTotalCount(getTotalCountSub);
+
+    const getNearestEmailCount = query(userCollectionRef, where('emailSent', '==', 'Yes'));
+		const nearestEmailCountSub = (await getCountFromServer(getNearestEmailCount)).data().count;
+    setNearestEmailCount(nearestEmailCountSub);
+
+    const getLongestEmailCount = query(userCollectionRef, where('longestEmailSent', '==', 'Yes'));
+		const longestEmailCountSub = (await getCountFromServer(getLongestEmailCount)).data().count;
+    setLongestEmailCount(longestEmailCountSub);
 	};
-
-
-
 
   useEffect(() => {
 		handleCount();
 	}, [users]);
-
-
-
 
   useEffect(() => {
     setUnsubscribedMapped(unsubscribed?.docs?.map((doc) => doc.id));
@@ -80,7 +84,6 @@ const OverView = () => {
   const [ExportModalIsOpen, setExportModalIsOpen] = React.useState(false);
   const [exportModalErrorMsg, setExportModalErrorMsg] = useState("");
   const handleCloseExportModal = () => { setExportModalIsOpen(false); }
-  const handleSubmitEmailModal = () => { setExportModalIsOpen(true); };
 
   const handleExportModal = async (adminName, adminEmail) => {
     // function handleExportModal(adminName, adminEmail) {
@@ -97,7 +100,7 @@ const OverView = () => {
     try {
       const userCount = usersMapped.length;
       UserDataService.sendExportEmail(adminName, adminEmail, userCount);
-      { exportFormat == "pdf" ? handleExportPdf(userRows) : handleExportCSV(userRows) }
+      { exportFormat === "pdf" ? handleExportPdf(userRows) : handleExportCSV(userRows) }
 
     } catch (err) {
       // setMessage({ error: true, msg: err.message });
@@ -178,7 +181,7 @@ const OverView = () => {
         <Typography variant='h1' component='h1' sx={styles.heading}>
           General Informations
         </Typography>
-        <OverViewBox nearestCount={nearestCount} longestCount={longestCount} totalCount={totalCount}/>
+        <OverViewBox nearestCount={nearestCount} longestCount={longestCount} totalCount={totalCount} nearestEmailCount={nearestEmailCount} longestEmailCount={longestEmailCount}/>
         <OverViewChartBox />
         <Typography variant='h1' component='h1' sx={styles.heading}>
           Admin Dashboard

@@ -3,7 +3,7 @@ import { Grid, Paper, Typography, Box } from "@mui/material";
 import { scoreCardBox, totalScoreBox, scoreTitle, totalScoreNumber, paraTitle, paraText } from "components/Styles/CardStyle";
 
 
-import ScoreCardBox from "components/formElements/ScoreCardBox";
+
 
 const leadTitle = (theme) => ({
   color: '#017dc3',
@@ -30,7 +30,7 @@ const leadTitle = (theme) => ({
   },
 });
 
-const NearestCardForm = ({ user }) => {
+const LongestCardForm = ({ user }) => {
   const [nearest, setNearest] = useState("");
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const NearestCardForm = ({ user }) => {
       <Grid container spacing={0} style={{ marginTop: '20px' }}>
         <Grid item xs={12}>
           <Typography variant="h1" component="h1" sx={leadTitle}>
-            Nearest the Pin score
+            Longest Drive score
           </Typography>
         </Grid>
         <Grid item xs={4} sm={3} md={4} sx={totalScoreBox}>
@@ -56,7 +56,7 @@ const NearestCardForm = ({ user }) => {
             TOTAL POINTS
           </Typography>
           <Typography sx={totalScoreNumber} variant="h1" component="h1" >
-            {nearest ? nearest : "-"}
+            {longest ? longest : "-"}
           </Typography>
         </Grid>
       </Grid>
@@ -64,7 +64,7 @@ const NearestCardForm = ({ user }) => {
       <Grid container spacing={0}  sx={scoreCardBox}>
 
         
-        <Grid item xs={12} sm={6} >
+        <Grid item xs={12}  >
           <Grid item xs={12}>
             <Typography sx={paraTitle} variant="h1" component="h1" >
               See my <br></br>activity scores
@@ -86,4 +86,4 @@ const NearestCardForm = ({ user }) => {
   );
 };
 
-export default NearestCardForm;
+export default LongestCardForm;

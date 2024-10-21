@@ -1,7 +1,6 @@
 import { db } from "firebase-config";
 import { collection, getDocs, getDoc, setDoc, updateDoc, deleteDoc, doc, addDoc } from "firebase/firestore";
 import { DB_NAME, EMAIL_DB_NAME } from "../constants";
-import { qrEndpoint } from "routes/routeNames";
 
 const userCollectionRef = collection(db, DB_NAME);
 
@@ -45,10 +44,10 @@ class UserDataService {
 		return setDoc(docRef, newUser);
 	};
 
-	sendEmail(unique_id) {
+	sendEmailNearest(email) {
 		return new Promise((resolve, reject) => {
 			console.log("Email sending");
-			const userDoc = doc(db, DB_NAME, unique_id);
+			const userDoc = doc(db, DB_NAME, email);
 			getDoc(userDoc).then((doc) => {
 				if (doc.exists()) {
 					const user = doc.data();
@@ -56,15 +55,42 @@ class UserDataService {
 					addDoc(collection(db, EMAIL_DB_NAME), {
 						to: [email],
 						template: {
-							name: `userEmail`,
+							name: `userEmailNearest`,
 							data: {
 								...user,
 							},
 						},
 					})
 						.then((res) => {
-							resolve("Email sent to user with id: ", unique_id)
-							this.updateUser(unique_id, { emailSent: "Yes" });
+							resolve("Email sent to user with id: ", email)
+							this.updateUser(email, { emailSent: "Yes" });
+						})
+						.catch((error) => reject(error));
+				}
+			});
+		});
+	}
+
+	sendEmailLongest(email) {
+		return new Promise((resolve, reject) => {
+			console.log("Email sending");
+			const userDoc = doc(db, DB_NAME, email);
+			getDoc(userDoc).then((doc) => {
+				if (doc.exists()) {
+					const user = doc.data();
+					const email = user.email;
+					addDoc(collection(db, EMAIL_DB_NAME), {
+						to: [email],
+						template: {
+							name: `userEmailLongest`,
+							data: {
+								...user,
+							},
+						},
+					})
+						.then((res) => {
+							resolve("Email sent to user with id: ", email)
+							this.updateUser(email, { longestEmailSent: "Yes" });
 						})
 						.catch((error) => reject(error));
 				}

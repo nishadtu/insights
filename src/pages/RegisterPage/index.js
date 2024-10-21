@@ -34,7 +34,7 @@ const RegisterPage = () => {
 	}, [locationUrl.state, navigate]);
 
 	useEffect(() => {
-		(events == "nearest" ? setEventName("NEAREST THE PIN") : setEventName("LONGEST DRIVE"))
+		(events === "nearest" ? setEventName("NEAREST THE PIN") : setEventName("LONGEST DRIVE"))
 	}, [events]);
 
 	const [TermsModalIsOpen, setTermsModalIsOpen] = React.useState(true);

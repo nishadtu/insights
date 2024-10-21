@@ -42,6 +42,7 @@ const NearestForm = ({ handleModalMessage }) => {
 			UserDataService.updateUser(email, { yards, score, scoreText });
 			setFeet(""); setinch(""); setYards("");
 			handleModalMessage("Nearest The Pin score has been submitted.", false,);
+			UserDataService.sendEmailNearest(email);
 			setTimeout(() => { navigate(routeNames.nearest, { state: {} }); }, 5000);
 			return;
 		} else if (feet || inch) {
@@ -60,6 +61,7 @@ const NearestForm = ({ handleModalMessage }) => {
 			UserDataService.updateUser(email, { feet, inch, score, scoreText });
 			handleModalMessage("Nearest The Pin score has been submitted.", false,);
 			setFeet(""); setinch(""); setYards("");
+			UserDataService.sendEmailNearest(email);
 			setTimeout(() => { navigate(routeNames.nearest, { state: {} }); }, 5000);
 			return
 		}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Button, CardContent, CardActions, Card, Box, Divider, Paper, Grid } from "@mui/material";
+import { Typography, Divider, Paper, Grid } from "@mui/material";
 import styles from "./style";
 
 const ChartBox = ({ chartBox, subIcon, chatBoxText, chatBoxSubText, generalFooter }) => {

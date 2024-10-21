@@ -3,6 +3,7 @@ import { DB_NAME } from "../constants";
 export const routeNames = {
 	home: `/2024/${DB_NAME}/`,
 	overview: `/2024/${DB_NAME}/overview`,
+	google: `/2024/${DB_NAME}/google`,
 	dashboard: `/2024/${DB_NAME}/dashboard`,
 	workflow: `/2024/${DB_NAME}/workflow`,
 	users: `/2024/${DB_NAME}/users`,
@@ -16,6 +17,7 @@ export const routeNames = {
 	userLogin: `/2024/${DB_NAME}/user-login`,
 	nearestScore: `/2024/${DB_NAME}/nearest-score`,
 	longestScore: `/2024/${DB_NAME}/longest-score`,
+	nearestCard: `/2024/${DB_NAME}/nearestCard/:id`,
 };
 export const qrEndpoint = `https://provisiondesign.co.uk/2024/${DB_NAME}/`;
 export const qrUploadEndpoint = `https://provisiondesign.co.uk/2024/${DB_NAME}/php/qr_upload.php`;

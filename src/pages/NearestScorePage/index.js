@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import MessageModal from "components/modals/MessageModal";
 import Header from "components/headers/Header";
 import NearestForm from "components/forms/scoreForm/NearestForm";
-import routeNames from "routes/routeNames";
-import { useNavigate } from 'react-router-dom';
+// import routeNames from "routes/routeNames";
+// import { useNavigate } from 'react-router-dom';
 
 const NearestScore= () => {
 
 	const [modalData, setModalData] = useState({ error: false, text: "", header: "", modalWait: "", callback: undefined });
 	const [modalIsOpen, setModalIsOpen] = React.useState(false);
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const handleModalMessage = (message, isError, modaltext, cb) => {
 		setModalData({
 			error: isError,

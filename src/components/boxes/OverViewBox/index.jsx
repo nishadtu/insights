@@ -5,7 +5,7 @@ import GeneralBox from 'components/GeneralBox';
 import PlaylistAddCircleOutlinedIcon from '@mui/icons-material/PlaylistAddCircleOutlined';
 
 
-const OverViewBox = ({ nearestCount, longestCount, totalCount }) => {
+const OverViewBox = ({ nearestCount, longestCount, totalCount, nearestEmailCount, longestEmailCount }) => {
 
   return (
     <>
@@ -21,7 +21,10 @@ const OverViewBox = ({ nearestCount, longestCount, totalCount }) => {
             <GeneralBox icon={<PlaylistAddCircleOutlinedIcon sx={styles.generalIcon} />} generalText='Total Users' generalNumber={totalCount} subIcon={<PlaylistAddCircleOutlinedIcon />} generalFooter='For entire time entries' />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <GeneralBox icon={<PlaylistAddCircleOutlinedIcon sx={styles.generalIcon} />} generalText='Total Users' generalNumber='25' subIcon={<PlaylistAddCircleOutlinedIcon />} generalFooter='For entire time entries' />
+            <GeneralBox icon={<PlaylistAddCircleOutlinedIcon sx={styles.generalIcon} />} generalText='Email Sent' generalNumber={nearestEmailCount} subIcon={<PlaylistAddCircleOutlinedIcon />} generalFooter='For Nearest score email sent' />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <GeneralBox icon={<PlaylistAddCircleOutlinedIcon sx={styles.generalIcon} />} generalText='Email Sent' generalNumber={longestEmailCount} subIcon={<PlaylistAddCircleOutlinedIcon />} generalFooter='For Longest score email sent' />
           </Grid>
         </Grid>
         

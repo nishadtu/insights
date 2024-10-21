@@ -666,7 +666,11 @@ th:last-child {
 }
 
 .css-hwkq3c-MuiInputBase-root-MuiFilledInput-root::after,
-.css-utk17j-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root::after {
+.css-utk17j-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root::after,
+.css-1ihy538::after,
+.css-ryj1ka::before,
+.css-1ihy538::before
+ {
     /* border-bottom: 2px solid #242f61 !important; */
     border-bottom: none !important;
 }
@@ -687,7 +691,8 @@ th:last-child {
     color: #242f61;
 }
 
-.css-1h777u5::after {
+.css-1h777u5::after,
+.css-ryj1ka::after {
     /* border-bottom: 2px solid #242f61 !important; */
     border-bottom: none !important;
 }
@@ -1166,10 +1171,10 @@ input[type="radio"]:checked+label {
     border-bottom: none !important;
 }
 
-.css-1rgmeur {
+.css-p6zovk  {
     padding-left: 65px !important;
 }
-.css-18qelqw{
+.css-ybz8c5{
     padding-left: 70px !important;
 }
 
